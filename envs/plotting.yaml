@@ -1,0 +1,7 @@
+name: plotting-env
+channels: [conda-forge, bioconda]
+dependencies:
+  - python=3.10
+  - matplotlib=3.7.*
+  - biopython=1.81
+  - numpy=1.24.*

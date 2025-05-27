@@ -1,0 +1,9 @@
+# conda / snakemake clutter
+
+.envs/
+.snakemake/
+*.snakemake_timestamp
+
+# large results
+
+results/

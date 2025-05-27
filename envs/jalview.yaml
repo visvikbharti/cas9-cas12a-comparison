@@ -1,5 +1,0 @@
-name: jalview-env
-channels: [bioconda, conda-forge]
-dependencies:
-  - openjdk=17
-  - jalview=2.11.3

@@ -70,12 +70,8 @@ rule pymol_render:
 rule alignment_png:
     input: "results/alignment/cas_dual_mafft.fasta"
     output: "results/alignment/cas_dual_mafft.png"
-    conda: "envs/jalview.yaml"
-    shell:
-        """
-        jalview -headless -open {input} \
-                -imageformat PNG -out {output}
-        """
+    conda: "envs/plotting.yaml"
+    script: "scripts/plot_alignment.py"
 
 rule dag_png:
     output: "results/workflow_dag.png"

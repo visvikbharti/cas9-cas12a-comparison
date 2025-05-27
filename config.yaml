@@ -1,0 +1,9 @@
+# Proteins of interest – add or remove IDs freely
+uniprot_ids:
+  - A0Q5Y3     # FnCas9
+  - A0Q7Q2     # FnCas12a (Cpf1)
+
+# Matching PDB entries *in the same order*
+pdb_ids:
+  - 5B2O       # FnCas9
+  - 6I1K       # FnCas12a
