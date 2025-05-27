@@ -26,6 +26,32 @@ Outputs appear in `results/`:
 * Add additional UniProt or PDB IDs to `config.yaml`; rerun Snakemake.
 * All software versions are pinned in `envs/*.yaml`.
 
+## Troubleshooting
+
+### Conda Environment Creation Timeouts
+
+If conda environment creation times out (especially for Java-based tools), use **mamba**:
+
+```bash
+# Install mamba (one-time)
+conda install -n base -c conda-forge mamba
+
+# Run pipeline with mamba
+snakemake -j 8 --use-conda --conda-frontend mamba
+```
+
+### Alternative Alignment Visualization
+
+The pipeline uses matplotlib for alignment visualization. For Jalview-style output:
+
+```bash
+# Option 1: Pre-create Jalview environment with mamba
+mamba env create -f envs/jalview.yaml
+
+# Option 2: Use lightweight msa_view instead
+# (see envs/msa_view.yaml in project wiki)
+```
+
 ## Citations
 
 * Hirano *et al.* (2016) **Science** – PDB 5B2O
