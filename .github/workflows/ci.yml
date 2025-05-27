@@ -1,0 +1,57 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Miniconda
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        auto-update-conda: true
+        python-version: 3.10
+        channels: conda-forge,bioconda,defaults
+        channel-priority: strict
+        mamba-version: "*"
+        use-mamba: true
+    
+    - name: Install Snakemake
+      shell: bash -l {0}
+      run: |
+        mamba install -c conda-forge -c bioconda snakemake
+        
+    - name: Check Snakemake DAG
+      shell: bash -l {0}
+      run: |
+        snakemake -n --use-conda --conda-frontend mamba
+    
+    - name: Create conda environments
+      shell: bash -l {0}
+      run: |
+        snakemake --use-conda --conda-frontend mamba --conda-create-envs-only
+    
+    - name: Run pipeline (dry-run)
+      shell: bash -l {0}
+      run: |
+        snakemake -n --use-conda --conda-frontend mamba
+        
+    - name: Generate DAG visualization
+      shell: bash -l {0}
+      run: |
+        sudo apt-get update && sudo apt-get install -y graphviz
+        snakemake --dag | dot -Tpng -o workflow_dag_ci.png
+        
+    - name: Upload DAG
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: workflow-dag
+        path: workflow_dag_ci.png
