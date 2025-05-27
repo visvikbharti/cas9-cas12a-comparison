@@ -1,28 +1,38 @@
 """
-Render an overlay PNG from a TM-align superposed PDB.
-
-Colours:
-  * FnCas9 chain -> red
-  * FnCas12a chain -> blue
-
-The script receives via Snakemake:
-  input.overlay : superposed PDB
-  output[0]     : target PNG path
+Render an overlay PNG from original PDB files with proper coloring.
+Creates a high-quality structural comparison visualization.
 """
 from pymol import cmd
+import os
 
 # Fresh session
 cmd.reinitialize()
 
-# Load overlay and split by model (TM-align writes model 1 & 2)
-cmd.load(snakemake.input.overlay, "overlay")
-models = cmd.get_object_list('overlay')  # ['overlay', 'overlay_0001'] etc.
-if len(models) >= 2:
-    cmd.color("red",  models[0])
-    cmd.color("blue", models[1])
+# Load original PDB files
+cmd.load("data/pdb/5B2O.pdb", "FnCas9")
+cmd.load("data/pdb/6I1K.pdb", "FnCas12a")
 
+# Apply distinct colors
+cmd.color("firebrick", "FnCas9")
+cmd.color("marine", "FnCas12a")
+
+# Display settings
 cmd.hide("everything")
 cmd.show("cartoon")
-cmd.set("cartoon_transparency", 0.15)
+cmd.set("cartoon_fancy_helices", 1)
+cmd.set("cartoon_transparency", 0.0)
 cmd.bg_color("white")
-cmd.png(snakemake.output[0], dpi=900, ray=1, width=1600, height=1200)
+cmd.set("ray_shadows", 0)
+cmd.set("ambient", 0.4)
+cmd.set("specular", 0.2)
+
+# Align structures for overlay
+cmd.align("FnCas12a", "FnCas9")
+
+# Orient and zoom
+cmd.orient()
+cmd.zoom("all", buffer=5)
+
+# Render high quality image
+cmd.ray(1600, 1200)
+cmd.png(snakemake.output[0], dpi=300)

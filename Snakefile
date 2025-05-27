@@ -66,6 +66,37 @@ rule pymol_render:
     conda: "envs/pymol.yaml"
     script: "scripts/render_overlay.py"
 
+rule pymol_multiview:
+    input: 
+        pdb1="data/pdb/5B2O.pdb",
+        pdb2="data/pdb/6I1K.pdb"
+    output: 
+        main="results/pymol/Fn_overlay_multiview.png"
+    conda: "envs/pymol.yaml"
+    script: "scripts/render_multiview.py"
+
+rule generate_movie_frames:
+    input: 
+        pdb1="data/pdb/5B2O.pdb",
+        pdb2="data/pdb/6I1K.pdb"
+    output: 
+        directory("results/pymol/movie_frames")
+    conda: "envs/pymol.yaml"
+    shell:
+        """
+        mkdir -p {output}
+        python scripts/generate_movie_frames.py
+        """
+
+rule create_movie_gif:
+    input: "results/pymol/movie_frames"
+    output: "results/pymol/Fn_overlay_rotation.gif"
+    conda: "envs/plotting.yaml"
+    shell:
+        """
+        python scripts/create_movie.py {input} {output}
+        """
+
 # ───────────────────────── alignment figure ─────────────────────────
 rule alignment_png:
     input: "results/alignment/cas_dual_mafft.fasta"
