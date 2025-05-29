@@ -10,11 +10,17 @@ configfile: "config.yaml"
 rule all:
     """Final targets."""
     input:
+        # Core outputs
         "results/pymol/Fn_overlay.png",
         "results/struct/tmalign_stats.txt",
         "results/alignment/cas_dual_mafft.fasta",
         "results/alignment/cas_dual_mafft.png",
-        "results/workflow_dag.png"
+        "results/workflow_dag.png",
+        # Additional analyses
+        "results/pymol/rotation.gif",
+        "results/pymol/color_overlay.pml",
+        "results/pymol/annotated/publication_figure.png",
+        "results/pymol/views/multiview_session.pse"
 
 # ───────────────────────── sequences ─────────────────────────
 rule download_fasta:
@@ -109,4 +115,47 @@ rule dag_png:
     shell:
         """
         snakemake --dag | dot -Tpng -o {output}
+        """
+
+# ───────────────────────── additional analyses ─────────────────────────
+rule create_rotation_gif:
+    input: 
+        frames=directory("results/pymol/movie_frames"),
+        script="scripts/create_movie.py"
+    output: "results/pymol/rotation.gif"
+    conda: "envs/plotting.yaml"
+    shell:
+        """
+        python {input.script} {input.frames} {output}
+        """
+
+rule create_annotated_figures:
+    input: 
+        views=directory("results/pymol/views"),
+        script="scripts/create_annotated_figures.py"
+    output: 
+        "results/pymol/annotated/publication_figure.png"
+    conda: "envs/plotting.yaml"
+    shell:
+        """
+        python {input.script}
+        """
+
+rule create_pml_script:
+    input: 
+        script="scripts/create_colored_overlay.py"
+    output: "results/pymol/color_overlay.pml"
+    shell:
+        """
+        python {input.script}
+        """
+
+rule multiview_session:
+    input: 
+        "results/pymol/Fn_overlay_multiview.png"
+    output: "results/pymol/views/multiview_session.pse"
+    shell:
+        """
+        # Session file is created by render_multiview.py
+        touch {output}
         """
