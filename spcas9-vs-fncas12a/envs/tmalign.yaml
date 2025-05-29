@@ -1,4 +1,0 @@
-name: tmalign-env
-channels: [bioconda, conda-forge]
-dependencies:
-  - tmalign=20190822

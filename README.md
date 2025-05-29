@@ -2,13 +2,10 @@
 
 ## Overview
 
-This repository contains comprehensive structural and sequence comparisons of CRISPR proteins, demonstrating both convergent and divergent evolutionary patterns through three pairwise analyses:
+This repository contains comprehensive structural and sequence comparisons of CRISPR proteins, demonstrating two fundamental evolutionary patterns:
 
-1. **Convergent Evolution**: 
-   - FnCas9 vs FnCas12a (Type II vs Type V)
-   - SpCas9 vs FnCas12a (Type II vs Type V)
-2. **Divergent Evolution**: 
-   - SpCas9 vs FnCas9 (both Type II)
+1. **Convergent Evolution**: FnCas9 vs FnCas12a (different CRISPR types)
+2. **Divergent Evolution**: SpCas9 vs FnCas9 (same CRISPR type)
 
 ## Key Scientific Findings
 
@@ -17,7 +14,6 @@ This repository contains comprehensive structural and sequence comparisons of CR
 | Comparison | RMSD (Å) | TM-score | Seq ID (%) | Relationship | Evolutionary Pattern |
 |------------|----------|----------|------------|--------------|---------------------|
 | **FnCas9 vs FnCas12a** | **10.00** | **0.21** | **7.4%** | Unrelated | **Convergent Evolution** |
-| **SpCas9 vs FnCas12a** | **10.23** | **0.22** | **7.0%** | Unrelated | **Convergent Evolution** |
 | **SpCas9 vs FnCas9** | **7.13** | **0.41** | **8.9%** | Related | **Divergent Evolution** |
 
 ### Biological Significance
@@ -29,9 +25,8 @@ This repository contains comprehensive structural and sequence comparisons of CR
 ## Repository Structure
 
 ```
-├── cas9-vs-cas12a/           # FnCas9 vs FnCas12a (convergent)
-├── spcas9-vs-fncas9/         # SpCas9 vs FnCas9 (divergent)  
-├── spcas9-vs-fncas12a/       # SpCas9 vs FnCas12a (convergent)
+├── cas9-vs-cas12a/           # Original FnCas9 vs FnCas12a analysis
+├── spcas9-vs-fncas9/         # New SpCas9 vs FnCas9 analysis  
 ├── comparative-analysis/      # Cross-analysis comparisons
 ├── docs/                     # Shared documentation
 └── README.md                 # This file
@@ -48,10 +43,6 @@ snakemake -j 8 --use-conda
 
 # SpCas9 vs FnCas9 (divergent evolution)  
 cd spcas9-vs-fncas9
-snakemake -j 8 --use-conda
-
-# SpCas9 vs FnCas12a (convergent evolution)
-cd spcas9-vs-fncas12a
 snakemake -j 8 --use-conda
 ```
 

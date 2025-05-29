@@ -1,4 +1,0 @@
-name: wget-only
-channels: [conda-forge]
-dependencies:
-  - wget=1.21.4

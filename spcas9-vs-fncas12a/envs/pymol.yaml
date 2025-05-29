@@ -1,5 +1,0 @@
-name: pymol-env
-channels: [conda-forge, bioconda]
-dependencies:
-  - pymol-open-source=2.5.*
-  - python=3.10

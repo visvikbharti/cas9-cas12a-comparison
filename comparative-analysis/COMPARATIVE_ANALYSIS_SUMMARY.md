@@ -1,31 +1,23 @@
 # Comparative Analysis Summary: CRISPR Protein Evolution
 
-## Complete Triangle Comparison
+## Three-Way Comparison Overview
 
-This document summarizes results from three pairwise analyses that comprehensively map evolutionary relationships in CRISPR systems:
+This document summarizes results from two complementary analyses that reveal different evolutionary relationships in CRISPR systems:
 
-1. **FnCas9 vs FnCas12a**: Convergent evolution (Type II vs Type V)
-2. **SpCas9 vs FnCas12a**: Convergent evolution (Type II vs Type V)
-3. **SpCas9 vs FnCas9**: Divergent evolution (both Type II)
+1. **FnCas9 vs FnCas12a**: Convergent evolution (different CRISPR types)
+2. **SpCas9 vs FnCas9**: Divergent evolution (same CRISPR type)
 
-## Complete Results Matrix
+## Side-by-Side Results
 
 ### Quantitative Metrics
 | Comparison | RMSD (Å) | TM-score | Seq ID (%) | Aligned Res | Relationship |
 |------------|----------|----------|------------|-------------|--------------|
 | **FnCas9 vs FnCas12a** | **10.00** | **0.21** | **7.4%** | **461** | **Convergent Evolution** |
-| **SpCas9 vs FnCas12a** | **10.23** | **0.22** | **7.0%** | **472** | **Convergent Evolution** |
 | **SpCas9 vs FnCas9** | **7.13** | **0.41** | **8.9%** | **710** | **Divergent Evolution** |
 
-### Triangle Analysis Pattern
-The complete triangle reveals:
-- **Both Cas12a comparisons** show convergent evolution (RMSD ~10 Å, TM-score ~0.2)
-- **Only the Cas9-Cas9 comparison** shows divergent evolution (RMSD 7.13 Å, TM-score 0.41)
-- **Consistency**: SpCas9-FnCas12a metrics match FnCas9-FnCas12a, confirming methodology
-
 ### Visual Comparison Impact
-| Feature | Convergent (vs Cas12a) | Divergent (Cas9 vs Cas9) |
-|---------|------------------------|--------------------------|
+| Feature | FnCas9 vs FnCas12a | SpCas9 vs FnCas9 |
+|---------|-------------------|------------------|
 | **Structural overlay** | Completely different architectures | Similar bi-lobed structures |
 | **Domain alignment** | No recognizable correspondence | Clear domain conservation |
 | **Sequence conservation** | Scattered random peaks | Many conserved blocks |
