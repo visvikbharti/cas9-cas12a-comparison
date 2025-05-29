@@ -1,0 +1,9 @@
+# Proteins of interest – FnCas12a vs SpCas9 comparison
+uniprot_ids:
+  - A0Q7Q2     # FnCas12a (Francisella novicida)
+  - Q99ZW2     # SpCas9 (Streptococcus pyogenes)
+
+# Matching PDB entries *in the same order*
+pdb_ids:
+  - 6I1K       # FnCas12a
+  - 5F9R       # SpCas9
