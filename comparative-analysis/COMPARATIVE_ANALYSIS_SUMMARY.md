@@ -1,23 +1,31 @@
 # Comparative Analysis Summary: CRISPR Protein Evolution
 
-## Three-Way Comparison Overview
+## Complete Triangle Comparison
 
-This document summarizes results from two complementary analyses that reveal different evolutionary relationships in CRISPR systems:
+This document summarizes results from three pairwise analyses that comprehensively map evolutionary relationships in CRISPR systems:
 
-1. **FnCas9 vs FnCas12a**: Convergent evolution (different CRISPR types)
-2. **SpCas9 vs FnCas9**: Divergent evolution (same CRISPR type)
+1. **FnCas9 vs FnCas12a**: Convergent evolution (Type II vs Type V)
+2. **FnCas12a vs SpCas9**: Convergent evolution (Type V vs Type II)
+3. **SpCas9 vs FnCas9**: Divergent evolution (both Type II)
 
-## Side-by-Side Results
+## Complete Results Matrix
 
 ### Quantitative Metrics
 | Comparison | RMSD (Å) | TM-score | Seq ID (%) | Aligned Res | Relationship |
 |------------|----------|----------|------------|-------------|--------------|
 | **FnCas9 vs FnCas12a** | **10.00** | **0.21** | **7.4%** | **461** | **Convergent Evolution** |
+| **FnCas12a vs SpCas9** | **10.23** | **0.23** | **7.0%** | **472** | **Convergent Evolution** |
 | **SpCas9 vs FnCas9** | **7.13** | **0.41** | **8.9%** | **710** | **Divergent Evolution** |
 
+### Triangle Analysis Pattern
+The complete triangle reveals:
+- **Both Cas12a comparisons** show convergent evolution (RMSD ~10 Å, TM-score ~0.2)
+- **Only the Cas9-Cas9 comparison** shows divergent evolution (RMSD 7.13 Å, TM-score 0.41)
+- **Consistency**: Both Type II vs Type V comparisons yield nearly identical metrics
+
 ### Visual Comparison Impact
-| Feature | FnCas9 vs FnCas12a | SpCas9 vs FnCas9 |
-|---------|-------------------|------------------|
+| Feature | Convergent (vs Cas12a) | Divergent (Cas9 vs Cas9) |
+|---------|------------------------|--------------------------|
 | **Structural overlay** | Completely different architectures | Similar bi-lobed structures |
 | **Domain alignment** | No recognizable correspondence | Clear domain conservation |
 | **Sequence conservation** | Scattered random peaks | Many conserved blocks |
@@ -122,7 +130,7 @@ SpCas9                 FnCas9 ←→ FnCas12a (No relationship)
 
 ### Immediate Next Steps
 
-1. **Complete the triangle**: SpCas9 vs FnCas12a analysis
+1. **Three-way MSA**: Multiple sequence alignment with all three proteins
 2. **Expand families**: Include Cas12b, Cas13, other types
 3. **Functional validation**: Biochemical assays to confirm predictions
 4. **Engineering tests**: Attempt domain swaps between related proteins
@@ -158,11 +166,17 @@ SpCas9                 FnCas9 ←→ FnCas12a (No relationship)
 
 ## Conclusions
 
-This dual analysis provides **definitive evidence** for two fundamental evolutionary patterns in CRISPR systems:
+This complete triangle analysis provides **definitive evidence** for evolutionary patterns in CRISPR systems:
 
-1. **Convergent evolution**: Unrelated proteins (Cas9 vs Cas12a) evolve similar functions
-2. **Divergent evolution**: Related proteins (SpCas9 vs FnCas9) adapt to different contexts
+1. **Convergent evolution**: Unrelated proteins (Type II vs Type V) evolve similar functions
+   - FnCas9 vs FnCas12a: RMSD 10.00 Å, TM-score 0.21
+   - FnCas12a vs SpCas9: RMSD 10.23 Å, TM-score 0.23
+   - Remarkably consistent metrics confirm independent evolution
 
-The **quantitative metrics** clearly distinguish these patterns, validating our analytical approach and providing a framework for understanding the full diversity of CRISPR systems.
+2. **Divergent evolution**: Related proteins (both Type II) adapt to different contexts
+   - SpCas9 vs FnCas9: RMSD 7.13 Å, TM-score 0.41
+   - Clear structural similarity despite sequence divergence
 
-**Bottom line**: Nature provides both complementary tools (convergent evolution) and optimizable scaffolds (divergent evolution) for biotechnology applications.
+The **quantitative metrics** clearly distinguish these patterns, with the complete triangle providing internal validation of our methodology.
+
+**Bottom line**: The complete analysis demonstrates how nature provides both complementary tools (convergent evolution) and optimizable scaffolds (divergent evolution) for biotechnology applications.
